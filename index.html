@@ -3,348 +3,503 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jenny Mosquera - CV</title>
+    <title>Jenny Andrea Mosquera - Portafolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #000000;
-            --text-color: #ffffff;
-            --accent-color: #cccccc;
-            --border-color: #333333;
+            --primary-blue: #0f4c81;
+            --dark-blue: #1a1a2e;
+            --light-bg: #f4f7f6;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --transition: all 0.3s ease;
         }
 
-        [data-theme="light"] {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --accent-color: #555555;
-            --border-color: #cccccc;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
             line-height: 1.6;
-            margin: 0;
-            padding: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
         }
 
-        .ascii-art {
-            font-size: 10px;
-            white-space: pre;
-            color: var(--text-color);
-            margin-bottom: 20px;
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 0;
         }
 
-        .controls {
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-blue);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #hero {
+            height: 100vh;
             display: flex;
-            gap: 10px;
             align-items: center;
-            margin-bottom: 20px;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(15, 76, 129, 0.85)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80') center/cover;
+            color: var(--white);
+            padding: 0 20px;
         }
 
-        button {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            border: 1px solid var(--text-color);
-            padding: 5px 10px;
-            font-family: inherit;
-            cursor: pointer;
+        .hero-content {
+            max-width: 800px;
         }
 
-        button:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--white);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            margin-bottom: 1.5rem;
         }
 
-        .hint {
-            font-size: 0.8rem;
-            color: var(--accent-color);
-        }
-
-        a {
-            color: var(--text-color);
-            text-decoration: underline;
-        }
-
-        h1, h2, h3, h4 {
+        .hero-content h1 {
+            font-size: 3.5rem;
             margin-bottom: 0.5rem;
-            font-weight: normal;
+            letter-spacing: -1px;
         }
 
-        h1 { border-bottom: 2px solid var(--text-color); padding-bottom: 5px; }
-        h3 { border-bottom: 1px dashed var(--text-color); padding-bottom: 5px; margin-top: 2rem; }
-
-        .date {
-            font-style: italic;
-            font-size: 0.9rem;
-            color: var(--accent-color);
+        .hero-content h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #d1d5db;
+            margin-bottom: 1.5rem;
         }
 
-        ul { padding-left: 20px; }
-        li { margin-bottom: 10px; }
-
-        /* Command Palette */
-        #command-palette {
-            position: fixed;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 400px;
-            background-color: var(--bg-color);
-            border: 2px solid var(--text-color);
-            padding: 10px;
-            z-index: 1000;
+        .hero-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
-        #command-palette.hidden {
-            display: none;
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
         }
 
-        #cmd-input {
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--white);
+        }
+
+        #brand .brand-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .brand-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .brand-image img {
             width: 100%;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            padding: 10px;
-            font-family: inherit;
-            box-sizing: border-box;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        #cmd-results {
-            list-style: none;
-            padding: 0;
-            margin: 10px 0 0 0;
+        #value-prop {
+            background-color: var(--white);
         }
 
-        #cmd-results li {
-            padding: 5px;
-            cursor: pointer;
-            border-bottom: 1px solid var(--border-color);
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
-        #cmd-results li:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
+        .card {
+            background: var(--light-bg);
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--primary-blue);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        #achievements {
+            background: var(--dark-blue);
+            color: var(--white);
+        }
+
+        #achievements .section-title {
+            color: var(--white);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
+        }
+
+        .achievement-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: scale(1.02);
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--primary-blue);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 5px;
+            width: 19px;
+            height: 19px;
+            background: var(--white);
+            border: 3px solid var(--primary-blue);
+            border-radius: 50%;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .timeline-content h3 {
+            color: var(--dark-blue);
+        }
+
+        .timeline-date {
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        #skills {
+            background: var(--white);
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .skill-chip {
+            background: var(--light-bg);
+            color: var(--dark-blue);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .skill-chip:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(15, 76, 129, 0.2);
+        }
+
+        #contact {
+            background: var(--dark-blue);
+            color: var(--white);
+            text-align: center;
+        }
+
+        #contact .section-title {
+            color: var(--white);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-message {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-top: 2rem;
+            color: #d1d5db;
+        }
+
+        @media (max-width: 768px) {
+            .brand-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content h3 {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <pre class="ascii-art">
-   ___                     __  __                                 
-  / _ \___ ___  ___  __ __/ / / /__ ___ __ __ ___  _______ _      
- / // / -_) _ \/ _ \/ // / /_/ / -_) _ \\ \ // _ \/ __/ _ `/      
-/____/\__/_//_/_//_/\_, /\____/\__/_//_/_\_\/_//_/_/  \_,_/       
-                   /___/                                          
-        </pre>
-        <div class="controls">
-            <button id="theme-toggle" aria-label="Cambiar Tema">Tema</button>
-            <button id="lang-toggle" aria-label="Cambiar Idioma">ES/EN</button>
-            <span class="hint">Presiona Ctrl+K para Comandos</span>
+
+    <section id="hero">
+        <div class="hero-content fade-in">
+            <img src="foto.png" alt="Jenny Andrea Mosquera" class="profile-img">
+            <h1>Jenny Andrea Mosquera</h1>
+            <h2>Tecnóloga en Gestión Administrativa y Apoyo Logístico</h2>
+            <h3>"Más de 25 años transformando operaciones en procesos eficientes y confiables"</h3>
+            <p>Especialista en orden, ejecución y confianza institucional.</p>
+            <a href="#contact" class="btn">Trabajemos juntos</a>
         </div>
-        <h1 data-i18n="name">Jenny Andrea Mosquera Arguello</h1>
-        <h2 data-i18n="role">Tecnóloga en Gestión Administrativa | Apoyo Logístico y Administrativo</h2>
-        <p class="contact">
-            <span data-i18n="location">Villavicencio, Meta</span> | 
-            <span>+57 310 655 8100</span> | 
-            <span>jennyandreamosquera04@gmail.com</span>
-        </p>
-        <p class="github-link">
-            <a href="https://github.com/susoskyMosquera" target="_blank" rel="noopener noreferrer">GitHub: susoskyMosquera</a>
-        </p>
-    </header>
+    </section>
 
-    <main>
-        <section id="perfil">
-            <h3 data-i18n="profile_title">Perfil Profesional</h3>
-            <p data-i18n="profile_desc">Tecnóloga en Gestión Administrativa con más de 25 años de experiencia en apoyo operativo, logístico y administrativo en contextos educativos e institucionales. Especializada en coordinación de eventos, gestión documental, atención a usuarios, manejo de proveedores, control de insumos y soporte en operaciones de transporte.</p>
-        </section>
+    <section id="brand" class="container">
+        <h2 class="section-title fade-in">Mi Marca Profesional</h2>
+        <div class="brand-grid fade-in">
+            <div class="brand-text">
+                <p>Soy Tecnóloga en Gestión Administrativa con una trayectoria consolidada de más de 25 años apoyando áreas operativas, logísticas y administrativas en entornos educativos e institucionales.</p>
+                <p>Mi enfoque se centra en la previsión y la organización. Destaco en la coordinación logística de eventos, la gestión documental rigurosa y el manejo de correspondencia y atención a clientes tanto internos como externos.</p>
+                <p>Opero bajo principios de proactividad, atención al detalle y capacidad de adaptación constante al cambio, garantizando soporte técnico integral y soluciones eficientes en el día a día operativo.</p>
+            </div>
+            <div class="brand-image">
+                <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80" alt="Entorno de oficina profesional">
+            </div>
+        </div>
+    </section>
 
-        <section id="experiencia">
-            <h3 data-i18n="exp_title">Experiencia Laboral</h3>
-            
-            <article class="job">
-                <h4 data-i18n="job1_title">Radio-operadora de Frecuencia y Satelitales | Transportes Taxi Estrella</h4>
-                <p class="date" data-i18n="job1_date">2017 – Presente | 8 años de experiencia</p>
-                <ul>
-                    <li data-i18n="job1_task1">Coordiné operaciones en tiempo real para flota de transporte, gestionando solicitudes, rutas y novedades a través de call center y plataformas GPS.</li>
-                    <li data-i18n="job1_task2">Atendí oportunamente requerimientos de usuarios y conductores; gestionando PQR y registros de servicio con enfoque en tiempos de respuesta.</li>
-                </ul>
-            </article>
+    <section id="value-prop">
+        <div class="container">
+            <h2 class="section-title fade-in">Valor que aporto</h2>
+            <div class="cards-grid">
+                <div class="card fade-in">
+                    <h3>Optimización de Procesos</h3>
+                    <p>Monitoreo y seguimiento operativo constante para asegurar fluidez en las tareas y control preciso de inventarios e insumos corporativos.</p>
+                </div>
+                <div class="card fade-in">
+                    <h3>Logística Sin Errores</h3>
+                    <p>Coordinación integral de transporte, hospedaje, reservas de espacios y recursos para eventos institucionales y desplazamientos directivos.</p>
+                </div>
+                <div class="card fade-in">
+                    <h3>Control Documental Eficiente</h3>
+                    <p>Gestión avanzada de archivo físico y digital, garantizando la trazabilidad de la información y la elaboración precisa de actas e informes.</p>
+                </div>
+                <div class="card fade-in">
+                    <h3>Atención a Resultados</h3>
+                    <p>Atención oportuna de PQR, gestión de requerimientos de usuarios y capacidad negociadora con proveedores para soluciones ágiles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <article class="job">
-                <h4 data-i18n="job2_title">Auxiliar Administrativa | Universidad Cooperativa de Colombia</h4>
-                <p class="date" data-i18n="job2_date">2007 – 2016 | 9 años de experiencia</p>
-                <ul>
-                    <li data-i18n="job2_task1">Coordiné logística integral de eventos académicos e institucionales: reserva de espacios, gestión de materiales, transporte y hospedaje para hasta 300 participantes.</li>
-                    <li data-i18n="job2_task2">Administré agenda de directivos, planifique reuniones, elabore actas e informes de gestión y di seguimiento a compromisos institucionales.</li>
-                </ul>
-            </article>
+    <section id="achievements">
+        <div class="container">
+            <h2 class="section-title fade-in">Logros Destacados</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card fade-in">
+                    <h3>+9 Años en Dirección Institucional</h3>
+                    <p>Permanencia y consolidación como auxiliar de dirección en la Universidad Cooperativa, liderando logística de alto nivel y operaciones administrativas.</p>
+                </div>
+                <div class="achievement-card fade-in">
+                    <h3>Gestión Integral de Recursos</h3>
+                    <p>Control de presupuesto operativo, inventarios y manejo de proveedores en sede universitaria durante más de una década con alto grado de confiabilidad.</p>
+                </div>
+                <div class="achievement-card fade-in">
+                    <h3>Cumplimiento Logístico Estricto</h3>
+                    <p>Garantía continua en el cumplimiento de itinerarios y presupuestos para comisiones institucionales, coordinando transporte y viáticos.</p>
+                </div>
+                <div class="achievement-card fade-in">
+                    <h3>Atención Masiva Efectiva</h3>
+                    <p>Consolidación de un perfil de atención al cliente de alto desempeño, resolviendo novedades y peticiones en un call center durante 8 años.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <article class="job">
-                <h4 data-i18n="job3_title">Radio Operadora y Digitadora | Asoc. de Taxis Especializados en Turismo – ASOTAXTUR</h4>
-                <p class="date" data-i18n="job3_date">1999 – 2006 | 7 años de experiencia</p>
-                <ul>
-                    <li data-i18n="job3_task1">Gestioné comunicaciones de radiofrecuencia para flota de aproximadamente 300 vehículos, coordinando despachos, reservas y novedades operativas.</li>
-                </ul>
-            </article>
-        </section>
+    <section id="experience" class="container">
+        <h2 class="section-title fade-in">Trayectoria Profesional</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <span class="timeline-date">2017 - Presente</span>
+                    <h3>Transportes Taxi Estrella</h3>
+                    <p><strong>Radio-operadora de Frecuencia y Satelitales</strong></p>
+                    <p>Coordinación de operaciones en tiempo real, administración de bases de datos, y gestión efectiva de trazabilidad y PQR de usuarios y conductores.</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <span class="timeline-date">2007 - 2016</span>
+                    <h3>Universidad Cooperativa de Colombia</h3>
+                    <p><strong>Auxiliar Administrativa - Dirección y Subdirección Institucional</strong></p>
+                    <p>Coordinación logística completa de eventos académicos, administración de agendas directivas, auditoría de viáticos y gestión del archivo documental institucional.</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <span class="timeline-date">1999 - 2006</span>
+                    <h3>ASOTAXTUR</h3>
+                    <p><strong>Radio Operadora y Digitadora</strong></p>
+                    <p>Gestión de comunicaciones y digitalización documental para flota masiva vehicular, administrando despachos y reservas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <section id="educacion">
-            <h3 data-i18n="edu_title">Formación Académica y Certificaciones</h3>
-            <ul>
-                <li data-i18n="edu1">Tecnólogo en Gestión Administrativa — SENA, Villavicencio (2014 – 2016)</li>
-                <li data-i18n="edu2">Bachiller Comercial — Col. Ntra. Sra. de Fátima (1992 – 1998)</li>
-                <li data-i18n="cert1">Excel Básico — Platzi, 2026</li>
-                <li data-i18n="cert2">Administración Documental y RRHH — SENA, 2025</li>
-            </ul>
-        </section>
-    </main>
+    <section id="skills" class="container">
+        <h2 class="section-title fade-in">Competencias Clave</h2>
+        <div class="skills-container fade-in">
+            <span class="skill-chip">Coordinación Logística</span>
+            <span class="skill-chip">Gestión Documental</span>
+            <span class="skill-chip">Atención a Clientes</span>
+            <span class="skill-chip">Manejo de Agenda</span>
+            <span class="skill-chip">Control de Inventarios</span>
+            <span class="skill-chip">Elaboración de Informes</span>
+            <span class="skill-chip">Herramientas Ofimáticas</span>
+            <span class="skill-chip">Trabajo en Equipo</span>
+            <span class="skill-chip">Adaptación al Cambio</span>
+            <span class="skill-chip">Pensamiento Crítico</span>
+        </div>
+    </section>
 
-    <div id="command-palette" class="hidden">
-        <input type="text" id="cmd-input" placeholder="Buscar sección... (Ej: perfil, experiencia, educacion)">
-        <ul id="cmd-results"></ul>
-    </div>
+    <section id="contact">
+        <div class="container fade-in">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-info">
+                <span>Villavicencio, Meta</span>
+                <span>+57 310 655 8100</span>
+                <span>jennyandreamosquera04@gmail.com</span>
+            </div>
+            <p class="contact-message">"Disponible para aportar valor y optimizar procesos"</p>
+        </div>
+    </section>
 
     <script>
-        const State = {
-            theme: 'dark',
-            lang: 'es'
-        };
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
 
-        const Translations = {
-            es: {
-                name: "Jenny Andrea Mosquera Arguello",
-                role: "Tecnóloga en Gestión Administrativa | Apoyo Logístico y Administrativo",
-                location: "Villavicencio, Meta",
-                profile_title: "Perfil Profesional",
-                profile_desc: "Tecnóloga en Gestión Administrativa con más de 25 años de experiencia en apoyo operativo, logístico y administrativo en contextos educativos e institucionales. Especializada en coordinación de eventos, gestión documental, atención a usuarios, manejo de proveedores, control de insumos y soporte en operaciones de transporte.",
-                exp_title: "Experiencia Laboral",
-                job1_title: "Radio-operadora de Frecuencia y Satelitales | Transportes Taxi Estrella",
-                job1_date: "2017 – Presente | 8 años de experiencia",
-                job1_task1: "Coordiné operaciones en tiempo real para flota de transporte, gestionando solicitudes, rutas y novedades a través de call center y plataformas GPS.",
-                job1_task2: "Atendí oportunamente requerimientos de usuarios y conductores; gestionando PQR y registros de servicio con enfoque en tiempos de respuesta.",
-                job2_title: "Auxiliar Administrativa | Universidad Cooperativa de Colombia",
-                job2_date: "2007 – 2016 | 9 años de experiencia",
-                job2_task1: "Coordiné logística integral de eventos académicos e institucionales: reserva de espacios, gestión de materiales, transporte y hospedaje para hasta 300 participantes.",
-                job2_task2: "Administré agenda de directivos, planifique reuniones, elabore actas e informes de gestión y di seguimiento a compromisos institucionales.",
-                job3_title: "Radio Operadora y Digitadora | Asoc. de Taxis Especializados en Turismo – ASOTAXTUR",
-                job3_date: "1999 – 2006 | 7 años de experiencia",
-                job3_task1: "Gestioné comunicaciones de radiofrecuencia para flota de aproximadamente 300 vehículos, coordinando despachos, reservas y novedades operativas.",
-                edu_title: "Formación Académica y Certificaciones",
-                edu1: "Tecnólogo en Gestión Administrativa — SENA, Villavicencio (2014 – 2016)",
-                edu2: "Bachiller Comercial — Col. Ntra. Sra. de Fátima (1992 – 1998)",
-                cert1: "Excel Básico — Platzi, 2026",
-                cert2: "Administración Documental y RRHH — SENA, 2025"
-            },
-            en: {
-                name: "Jenny Andrea Mosquera Arguello",
-                role: "Administrative Management Technologist | Logistics and Administrative Support",
-                location: "Villavicencio, Meta",
-                profile_title: "Professional Profile",
-                profile_desc: "Administrative Management Technologist with over 25 years of experience in operational, logistics, and administrative support in educational and institutional contexts. Specialized in event coordination, document management, customer service, supplier management, inventory control, and transport operations support.",
-                exp_title: "Work Experience",
-                job1_title: "Radio Frequency and Satellite Operator | Transportes Taxi Estrella",
-                job1_date: "2017 – Present | 8 years of experience",
-                job1_task1: "Coordinated real-time operations for transport fleet, managing requests, routes, and updates via call center and GPS platforms.",
-                job1_task2: "Timely attended user and driver requirements; managed PQR and service records focusing on response times.",
-                job2_title: "Administrative Assistant | Universidad Cooperativa de Colombia",
-                job2_date: "2007 – 2016 | 9 years of experience",
-                job2_task1: "Coordinated comprehensive logistics for academic and institutional events: space reservation, materials management, transport, and lodging for up to 300 participants.",
-                job2_task2: "Managed executive agendas, planned meetings, drafted minutes and management reports, and tracked institutional commitments.",
-                job3_title: "Radio Operator and Data Entry | Asoc. de Taxis Especializados en Turismo – ASOTAXTUR",
-                job3_date: "1999 – 2006 | 7 years of experience",
-                job3_task1: "Managed radio frequency communications for a fleet of ~300 vehicles, coordinating dispatches, reservations, and operational updates.",
-                edu_title: "Academic Background & Certifications",
-                edu1: "Administrative Management Technologist — SENA, Villavicencio (2014 – 2016)",
-                edu2: "Commercial High School Diploma — Col. Ntra. Sra. de Fátima (1992 – 1998)",
-                cert1: "Basic Excel — Platzi, 2026",
-                cert2: "Document Management & HR — SENA, 2025"
-            }
-        };
-
-        class ThemeController {
-            static init() {
-                const btn = document.getElementById('theme-toggle');
-                btn.addEventListener('click', () => {
-                    State.theme = State.theme === 'dark' ? 'light' : 'dark';
-                    document.documentElement.setAttribute('data-theme', State.theme);
-                });
-            }
-        }
-
-        class LanguageController {
-            static init() {
-                const btn = document.getElementById('lang-toggle');
-                btn.addEventListener('click', () => {
-                    State.lang = State.lang === 'es' ? 'en' : 'es';
-                    this.applyTranslations();
-                });
-            }
-
-            static applyTranslations() {
-                const elements = document.querySelectorAll('[data-i18n]');
-                elements.forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (Translations[State.lang][key]) {
-                        el.innerText = Translations[State.lang][key];
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
                     }
                 });
-            }
-        }
+            }, observerOptions);
 
-        class CommandPaletteController {
-            static init() {
-                const palette = document.getElementById('command-palette');
-                const input = document.getElementById('cmd-input');
-                const results = document.getElementById('cmd-results');
-                
-                const sections = [
-                    { id: 'perfil', label: 'Ir a Perfil Profesional' },
-                    { id: 'experiencia', label: 'Ir a Experiencia Laboral' },
-                    { id: 'educacion', label: 'Ir a Formación y Certificaciones' }
-                ];
-
-                document.addEventListener('keydown', (e) => {
-                    if (e.ctrlKey && e.key.toLowerCase() === 'k') {
-                        e.preventDefault();
-                        palette.classList.toggle('hidden');
-                        if (!palette.classList.contains('hidden')) input.focus();
-                    }
-                    if (e.key === 'Escape') {
-                        palette.classList.add('hidden');
-                    }
-                });
-
-                input.addEventListener('input', (e) => {
-                    const val = e.target.value.toLowerCase();
-                    results.innerHTML = '';
-                    if (!val) return;
-
-                    const filtered = sections.filter(s => s.label.toLowerCase().includes(val));
-                    filtered.forEach(item => {
-                        const li = document.createElement('li');
-                        li.innerText = item.label;
-                        li.addEventListener('click', () => {
-                            document.getElementById(item.id).scrollIntoView({ behavior: 'smooth' });
-                            palette.classList.add('hidden');
-                            input.value = '';
-                            results.innerHTML = '';
-                        });
-                        results.appendChild(li);
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
+            });
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
                     });
                 });
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            ThemeController.init();
-            LanguageController.init();
-            CommandPaletteController.init();
+            });
         });
     </script>
 </body>
