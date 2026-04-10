@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenny Mosquera - CV</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --accent-color: #cccccc;
+            --border-color: #333333;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --accent-color: #555555;
+            --border-color: #cccccc;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .ascii-art {
+            font-size: 10px;
+            white-space: pre;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--text-color);
+            padding: 5px 10px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        .hint {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+        }
+
+        a {
+            color: var(--text-color);
+            text-decoration: underline;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 0.5rem;
+            font-weight: normal;
+        }
+
+        h1 { border-bottom: 2px solid var(--text-color); padding-bottom: 5px; }
+        h3 { border-bottom: 1px dashed var(--text-color); padding-bottom: 5px; margin-top: 2rem; }
+
+        .date {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
+
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        /* Command Palette */
+        #command-palette {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            background-color: var(--bg-color);
+            border: 2px solid var(--text-color);
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        #command-palette.hidden {
+            display: none;
+        }
+
+        #cmd-input {
+            width: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+
+        #cmd-results {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+        }
+
+        #cmd-results li {
+            padding: 5px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        #cmd-results li:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <pre class="ascii-art">
+   ___                     __  __                                 
+  / _ \___ ___  ___  __ __/ / / /__ ___ __ __ ___  _______ _      
+ / // / -_) _ \/ _ \/ // / /_/ / -_) _ \\ \ // _ \/ __/ _ `/      
+/____/\__/_//_/_//_/\_, /\____/\__/_//_/_\_\/_//_/_/  \_,_/       
+                   /___/                                          
+        </pre>
+        <div class="controls">
+            <button id="theme-toggle" aria-label="Cambiar Tema">Tema</button>
+            <button id="lang-toggle" aria-label="Cambiar Idioma">ES/EN</button>
+            <span class="hint">Presiona Ctrl+K para Comandos</span>
+        </div>
+        <h1 data-i18n="name">Jenny Andrea Mosquera Arguello</h1>
+        <h2 data-i18n="role">Tecnóloga en Gestión Administrativa | Apoyo Logístico y Administrativo</h2>
+        <p class="contact">
+            <span data-i18n="location">Villavicencio, Meta</span> | 
+            <span>+57 310 655 8100</span> | 
+            <span>jennyandreamosquera04@gmail.com</span>
+        </p>
+        <p class="github-link">
+            <a href="https://github.com/susoskyMosquera" target="_blank" rel="noopener noreferrer">GitHub: susoskyMosquera</a>
+        </p>
+    </header>
+
+    <main>
+        <section id="perfil">
+            <h3 data-i18n="profile_title">Perfil Profesional</h3>
+            <p data-i18n="profile_desc">Tecnóloga en Gestión Administrativa con más de 25 años de experiencia en apoyo operativo, logístico y administrativo en contextos educativos e institucionales. Especializada en coordinación de eventos, gestión documental, atención a usuarios, manejo de proveedores, control de insumos y soporte en operaciones de transporte.</p>
+        </section>
+
+        <section id="experiencia">
+            <h3 data-i18n="exp_title">Experiencia Laboral</h3>
+            
+            <article class="job">
+                <h4 data-i18n="job1_title">Radio-operadora de Frecuencia y Satelitales | Transportes Taxi Estrella</h4>
+                <p class="date" data-i18n="job1_date">2017 – Presente | 8 años de experiencia</p>
+                <ul>
+                    <li data-i18n="job1_task1">Coordiné operaciones en tiempo real para flota de transporte, gestionando solicitudes, rutas y novedades a través de call center y plataformas GPS.</li>
+                    <li data-i18n="job1_task2">Atendí oportunamente requerimientos de usuarios y conductores; gestionando PQR y registros de servicio con enfoque en tiempos de respuesta.</li>
+                </ul>
+            </article>
+
+            <article class="job">
+                <h4 data-i18n="job2_title">Auxiliar Administrativa | Universidad Cooperativa de Colombia</h4>
+                <p class="date" data-i18n="job2_date">2007 – 2016 | 9 años de experiencia</p>
+                <ul>
+                    <li data-i18n="job2_task1">Coordiné logística integral de eventos académicos e institucionales: reserva de espacios, gestión de materiales, transporte y hospedaje para hasta 300 participantes.</li>
+                    <li data-i18n="job2_task2">Administré agenda de directivos, planifique reuniones, elabore actas e informes de gestión y di seguimiento a compromisos institucionales.</li>
+                </ul>
+            </article>
+
+            <article class="job">
+                <h4 data-i18n="job3_title">Radio Operadora y Digitadora | Asoc. de Taxis Especializados en Turismo – ASOTAXTUR</h4>
+                <p class="date" data-i18n="job3_date">1999 – 2006 | 7 años de experiencia</p>
+                <ul>
+                    <li data-i18n="job3_task1">Gestioné comunicaciones de radiofrecuencia para flota de aproximadamente 300 vehículos, coordinando despachos, reservas y novedades operativas.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="educacion">
+            <h3 data-i18n="edu_title">Formación Académica y Certificaciones</h3>
+            <ul>
+                <li data-i18n="edu1">Tecnólogo en Gestión Administrativa — SENA, Villavicencio (2014 – 2016)</li>
+                <li data-i18n="edu2">Bachiller Comercial — Col. Ntra. Sra. de Fátima (1992 – 1998)</li>
+                <li data-i18n="cert1">Excel Básico — Platzi, 2026</li>
+                <li data-i18n="cert2">Administración Documental y RRHH — SENA, 2025</li>
+            </ul>
+        </section>
+    </main>
+
+    <div id="command-palette" class="hidden">
+        <input type="text" id="cmd-input" placeholder="Buscar sección... (Ej: perfil, experiencia, educacion)">
+        <ul id="cmd-results"></ul>
+    </div>
+
+    <script>
+        const State = {
+            theme: 'dark',
+            lang: 'es'
+        };
+
+        const Translations = {
+            es: {
+                name: "Jenny Andrea Mosquera Arguello",
+                role: "Tecnóloga en Gestión Administrativa | Apoyo Logístico y Administrativo",
+                location: "Villavicencio, Meta",
+                profile_title: "Perfil Profesional",
+                profile_desc: "Tecnóloga en Gestión Administrativa con más de 25 años de experiencia en apoyo operativo, logístico y administrativo en contextos educativos e institucionales. Especializada en coordinación de eventos, gestión documental, atención a usuarios, manejo de proveedores, control de insumos y soporte en operaciones de transporte.",
+                exp_title: "Experiencia Laboral",
+                job1_title: "Radio-operadora de Frecuencia y Satelitales | Transportes Taxi Estrella",
+                job1_date: "2017 – Presente | 8 años de experiencia",
+                job1_task1: "Coordiné operaciones en tiempo real para flota de transporte, gestionando solicitudes, rutas y novedades a través de call center y plataformas GPS.",
+                job1_task2: "Atendí oportunamente requerimientos de usuarios y conductores; gestionando PQR y registros de servicio con enfoque en tiempos de respuesta.",
+                job2_title: "Auxiliar Administrativa | Universidad Cooperativa de Colombia",
+                job2_date: "2007 – 2016 | 9 años de experiencia",
+                job2_task1: "Coordiné logística integral de eventos académicos e institucionales: reserva de espacios, gestión de materiales, transporte y hospedaje para hasta 300 participantes.",
+                job2_task2: "Administré agenda de directivos, planifique reuniones, elabore actas e informes de gestión y di seguimiento a compromisos institucionales.",
+                job3_title: "Radio Operadora y Digitadora | Asoc. de Taxis Especializados en Turismo – ASOTAXTUR",
+                job3_date: "1999 – 2006 | 7 años de experiencia",
+                job3_task1: "Gestioné comunicaciones de radiofrecuencia para flota de aproximadamente 300 vehículos, coordinando despachos, reservas y novedades operativas.",
+                edu_title: "Formación Académica y Certificaciones",
+                edu1: "Tecnólogo en Gestión Administrativa — SENA, Villavicencio (2014 – 2016)",
+                edu2: "Bachiller Comercial — Col. Ntra. Sra. de Fátima (1992 – 1998)",
+                cert1: "Excel Básico — Platzi, 2026",
+                cert2: "Administración Documental y RRHH — SENA, 2025"
+            },
+            en: {
+                name: "Jenny Andrea Mosquera Arguello",
+                role: "Administrative Management Technologist | Logistics and Administrative Support",
+                location: "Villavicencio, Meta",
+                profile_title: "Professional Profile",
+                profile_desc: "Administrative Management Technologist with over 25 years of experience in operational, logistics, and administrative support in educational and institutional contexts. Specialized in event coordination, document management, customer service, supplier management, inventory control, and transport operations support.",
+                exp_title: "Work Experience",
+                job1_title: "Radio Frequency and Satellite Operator | Transportes Taxi Estrella",
+                job1_date: "2017 – Present | 8 years of experience",
+                job1_task1: "Coordinated real-time operations for transport fleet, managing requests, routes, and updates via call center and GPS platforms.",
+                job1_task2: "Timely attended user and driver requirements; managed PQR and service records focusing on response times.",
+                job2_title: "Administrative Assistant | Universidad Cooperativa de Colombia",
+                job2_date: "2007 – 2016 | 9 years of experience",
+                job2_task1: "Coordinated comprehensive logistics for academic and institutional events: space reservation, materials management, transport, and lodging for up to 300 participants.",
+                job2_task2: "Managed executive agendas, planned meetings, drafted minutes and management reports, and tracked institutional commitments.",
+                job3_title: "Radio Operator and Data Entry | Asoc. de Taxis Especializados en Turismo – ASOTAXTUR",
+                job3_date: "1999 – 2006 | 7 years of experience",
+                job3_task1: "Managed radio frequency communications for a fleet of ~300 vehicles, coordinating dispatches, reservations, and operational updates.",
+                edu_title: "Academic Background & Certifications",
+                edu1: "Administrative Management Technologist — SENA, Villavicencio (2014 – 2016)",
+                edu2: "Commercial High School Diploma — Col. Ntra. Sra. de Fátima (1992 – 1998)",
+                cert1: "Basic Excel — Platzi, 2026",
+                cert2: "Document Management & HR — SENA, 2025"
+            }
+        };
+
+        class ThemeController {
+            static init() {
+                const btn = document.getElementById('theme-toggle');
+                btn.addEventListener('click', () => {
+                    State.theme = State.theme === 'dark' ? 'light' : 'dark';
+                    document.documentElement.setAttribute('data-theme', State.theme);
+                });
+            }
+        }
+
+        class LanguageController {
+            static init() {
+                const btn = document.getElementById('lang-toggle');
+                btn.addEventListener('click', () => {
+                    State.lang = State.lang === 'es' ? 'en' : 'es';
+                    this.applyTranslations();
+                });
+            }
+
+            static applyTranslations() {
+                const elements = document.querySelectorAll('[data-i18n]');
+                elements.forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (Translations[State.lang][key]) {
+                        el.innerText = Translations[State.lang][key];
+                    }
+                });
+            }
+        }
+
+        class CommandPaletteController {
+            static init() {
+                const palette = document.getElementById('command-palette');
+                const input = document.getElementById('cmd-input');
+                const results = document.getElementById('cmd-results');
+                
+                const sections = [
+                    { id: 'perfil', label: 'Ir a Perfil Profesional' },
+                    { id: 'experiencia', label: 'Ir a Experiencia Laboral' },
+                    { id: 'educacion', label: 'Ir a Formación y Certificaciones' }
+                ];
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.ctrlKey && e.key.toLowerCase() === 'k') {
+                        e.preventDefault();
+                        palette.classList.toggle('hidden');
+                        if (!palette.classList.contains('hidden')) input.focus();
+                    }
+                    if (e.key === 'Escape') {
+                        palette.classList.add('hidden');
+                    }
+                });
+
+                input.addEventListener('input', (e) => {
+                    const val = e.target.value.toLowerCase();
+                    results.innerHTML = '';
+                    if (!val) return;
+
+                    const filtered = sections.filter(s => s.label.toLowerCase().includes(val));
+                    filtered.forEach(item => {
+                        const li = document.createElement('li');
+                        li.innerText = item.label;
+                        li.addEventListener('click', () => {
+                            document.getElementById(item.id).scrollIntoView({ behavior: 'smooth' });
+                            palette.classList.add('hidden');
+                            input.value = '';
+                            results.innerHTML = '';
+                        });
+                        results.appendChild(li);
+                    });
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            ThemeController.init();
+            LanguageController.init();
+            CommandPaletteController.init();
+        });
+    </script>
+</body>
+</html>
